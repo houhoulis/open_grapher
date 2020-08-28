@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<div id="container" style="height: 800px"></div>
+<p>click<br />here</p>
+
+<script>
+
+  var query = window.location.search.slice(1).split('&');
+
+  var parts = ["title", "subtitle", "start", "x", "y"];
+
+  parseItem = function(chunk) {
+    parted = chunk.split('=');
+    return { label: parted[0], value: parted[1] };
+  };
+
+  findItem = function(label) {
+    var item = query.find(function(entry) {
+      return parseItem(entry).label === label;
+    });
+
+    return parseItem(item).value;
+  };
+
+  dataItems = function() {
+    var data = query.filter(function(entry) {
+      return !parts.some(function(part) {
+        return part === parseItem(entry).label;
+      });
+    });
+
+    return data.map(function(item) {
+      return parseItem(item);
+    });
+  };
+
+  chartableItem = function(itemObj) {
+    var valueData = itemObj.value;
+    var values = valueData.split(',').map(function(datum) {
+      if(datum === "") {
+        return null;
+      } else {
+        return parseFloat(datum);
+      }
+    });
+    return {
+      name: decodeURIComponent(itemObj.label),
+      data: values
+    };
+  };
+
+  seriesItems = function() {
+    var items = dataItems();
+
+    return items.map(function(item) {
+      return chartableItem(item);
+    });
+  };
+
+  startPoint = function() {
+    var start = parseFloat(findItem("start"));
+
+    if(isNaN(start)) {
+      start = 15;
+    };
+
+    return start;
+  };
+
+  var chart = Highcharts.chart('container', {
+
+    title: {
+      text: decodeURIComponent(findItem('title'))
+    },
+
+    subtitle: {
+      text: decodeURIComponent(findItem('subtitle'))
+    },
+
+    xAxis: {
+      title: {
+        text: decodeURIComponent(findItem('x'))
+      }
+    },
+    yAxis: {
+      title: {
+        text: decodeURIComponent(findItem('y'))
+      }
+    },
+    legend: {
+      layout: 'horizontal',
+      align: 'center',
+      verticalAlign: 'top',
+      y: 50
+    },
+
+    plotOptions: {
+      series: {
+        pointStart: startPoint(),
+        connectNulls: true
+      }
+    },
+
+    series: seriesItems()
+  });
+
+document.querySelector('p').addEventListener('click', function() {
+  window.location.assign(window.location.href + "&thingee=-1,-2,-3,-4,-5,-6,-7,-8,-9,-10")
+});
+
+</script>
+
+</body>
+</html>
+
