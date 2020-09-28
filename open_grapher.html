@@ -65,7 +65,7 @@
       data: theilSen(results[0].data)
     }
     results.push(theil_sen_thing);
-    console.table(results);
+    console.table(theil_sen_thing);
     return results
   };
 
@@ -116,27 +116,15 @@
     series: seriesItems()
   });
 
-  //function theilSen(series) {
-  //const points = series.split(",").map(function(item, index) { return [index, Number(item)] });
-  //let slopes = [];
-//   points.forEach(function(point) {
-//     const others = points.filter(a_point => a_point[0] !== point[0]);
-//     others.forEach(function(other) {
-//       slopes.push((point[0] - other[0]) / (point[1] - other[1]));
-//     });
-//   });
-//   const slope_fit = median(slopes);
-//   y_intercept = median(points.map(point => point[1] - slope_fit * point[0]));
-//   return points.map(point => slope_fit * point[0] + y_intercept);
-// };
-
 
   function theilSen(series) {
     console.warn("theilsen accepted series:")
     console.warn(series);
     let slopes = [];
     const ersatzPoints = series.map((value, index) => [index, value]);
-    ersatzPoints.forEach(function(point) {
+    console.warn("series => ersatxzPonts:")
+    console.warn(ersatzPoints);
+    ersatzPoints.filter(arr => arr[1] !== null).forEach(function(point) {
       const others = ersatzPoints.filter(a_point => a_point[0] !== point[0]);
       others.forEach(function(other) {
         slopes.push([
@@ -146,19 +134,23 @@
         ]);
       });
     });
+    let slosum = slopes.reduce(((accum, elt) => accum + elt[2]), 0);
+    console.warn("slosum: " + typeof(slosum));
+    console.warn(slosum);
     console.table(slopes);
     const slope_fit = median(slopes.map(arr => arr[2]));
-    console.info(slope_fit);
-    y_intercept = median(ersatzPoints.map(point => point[1] - slope_fit * point[0]));
-    console.warn(y_intercept);
+    console.info("slope_fit: " + slope_fit);
+    y_intercept = median(ersatzPoints.filter(arr => arr[1] !== null).map(point => point[1] - slope_fit * point[0]));
+    console.warn("y_intercept: " + y_intercept);
     return ersatzPoints.map(point => slope_fit * point[0] + y_intercept);
   };
 
 
-
 function median(values) {
-  console.error(values);
+  // console.error('median:'); console.table(values);
   const length = values.length;
+  values = values.sort((a, b) => a > b);
+  // console.table(values);
   if(length % 2 == 0) {
     return (values[(length / 2) - 1] + values[length / 2]) / 2;
   } else {
