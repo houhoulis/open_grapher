@@ -56,9 +56,17 @@
   seriesItems = function() {
     var items = dataItems();
 
-    return items.map(function(item) {
+    // hack to shove in theil-sen attempt
+    let results = items.map(function(item) {
       return chartableItem(item);
     });
+    let theil_sen_thing = {
+      name: results[0].name + 'theil',
+      data: theilSen(results[0].data)
+    }
+    results.push(theil_sen_thing);
+    console.table(results);
+    return results
   };
 
   startPoint = function() {
@@ -107,6 +115,57 @@
 
     series: seriesItems()
   });
+
+  //function theilSen(series) {
+  //const points = series.split(",").map(function(item, index) { return [index, Number(item)] });
+  //let slopes = [];
+//   points.forEach(function(point) {
+//     const others = points.filter(a_point => a_point[0] !== point[0]);
+//     others.forEach(function(other) {
+//       slopes.push((point[0] - other[0]) / (point[1] - other[1]));
+//     });
+//   });
+//   const slope_fit = median(slopes);
+//   y_intercept = median(points.map(point => point[1] - slope_fit * point[0]));
+//   return points.map(point => slope_fit * point[0] + y_intercept);
+// };
+
+
+  function theilSen(series) {
+    console.warn("theilsen accepted series:")
+    console.warn(series);
+    let slopes = [];
+    const ersatzPoints = series.map((value, index) => [index, value]);
+    ersatzPoints.forEach(function(point) {
+      const others = ersatzPoints.filter(a_point => a_point[0] !== point[0]);
+      others.forEach(function(other) {
+        slopes.push([
+          point,
+          other,
+          (point[1] - other[1]) / (point[0] - other[0])
+        ]);
+      });
+    });
+    console.table(slopes);
+    const slope_fit = median(slopes.map(arr => arr[2]));
+    console.info(slope_fit);
+    y_intercept = median(ersatzPoints.map(point => point[1] - slope_fit * point[0]));
+    console.warn(y_intercept);
+    return ersatzPoints.map(point => slope_fit * point[0] + y_intercept);
+  };
+
+
+
+function median(values) {
+  console.error(values);
+  const length = values.length;
+  if(length % 2 == 0) {
+    return (values[(length / 2) - 1] + values[length / 2]) / 2;
+  } else {
+    return values[length / 2 - 0.5];
+  }
+}
+
 
 document.querySelector('p').addEventListener('click', function() {
   window.location.assign(window.location.href + "&thingee=-1,-2,-3,-4,-5,-6,-7,-8,-9,-10")
