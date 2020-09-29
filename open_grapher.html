@@ -118,14 +118,14 @@
 
 
   function theilSen(series) {
-    console.warn("theilsen accepted series:")
-    console.warn(series);
+    // console.warn("theilsen accepted series:")
+    // console.warn(series);
     let slopes = [];
     const ersatzPoints = series.map((value, index) => [index, value]);
-    console.warn("series => ersatxzPonts:")
-    console.warn(ersatzPoints);
+    // console.warn("series => ersatxzPonts:")
+    // console.warn(ersatzPoints);
     ersatzPoints.filter(arr => arr[1] !== null).forEach(function(point) {
-      const others = ersatzPoints.filter(a_point => a_point[0] !== point[0]);
+      const others = ersatzPoints.slice(point[0] + 1);
       others.forEach(function(other) {
         slopes.push([
           point,
@@ -149,7 +149,7 @@
 function median(values) {
   // console.error('median:'); console.table(values);
   const length = values.length;
-  values = values.sort((a, b) => a > b);
+  values = values.sort((a, b) => a - b);
   // console.table(values);
   if(length % 2 == 0) {
     return (values[(length / 2) - 1] + values[length / 2]) / 2;
