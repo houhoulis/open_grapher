@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "ava": "^3.13.0"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
+  "scripts": {
+    "test": "ava ava"
+  },
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
