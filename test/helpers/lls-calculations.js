@@ -1,4 +1,4 @@
-export { llsError, bruteForceLLS };
+export { bruteForceLLS };
 
 import { max, min, sum } from '../../modules/utils/max-min-sum.js';
 

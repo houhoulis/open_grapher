@@ -84,3 +84,9 @@ function bruteForceLLS(lineDef, points) {
 ....... lerr.pts = pts;
 ....... }; }; };
 };
+
+
+
+file:///Users/c/d/eevee_grapher/open_grapher.html?title=grapher&subtitle=starting%201%2F1&thing0=4,3,5,4&thing%201=3,4.2,5,4.3&thing%202=4,4.8,6,3,5&start=100.5&x=date&y=lb
+
+`npx ava`, or e.g. `npx ava -v test/test-theil-sen.js`

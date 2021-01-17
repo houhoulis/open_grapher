@@ -52,16 +52,3 @@ test("steeper slopes have stronger influence: negative", t => {
   const actual = slopes(points);
   arrayShallowEqual(t, actual, expected);
 });
-
-test("ava: true: 0 == -0", t => {
-  t.true(0 == -0);
-  t.true(-0 == 0);
-});
-test("ava: true: 0 === -0", t => {
-  t.true(0 === -0);
-  t.true(-0 === 0);
-});
-test("ava: notDeepEqual: 0, -0", t => {
-  t.notDeepEqual(0, -0);
-  t.notDeepEqual(-0, 0);
-});
