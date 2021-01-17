@@ -1,8 +1,8 @@
 import { projeccions } from './modules/projeccions.js';
 
-document.querySelector('p').addEventListener('click', function() {
-  window.location.assign(window.location.href + "&thingee=-1,-2,-3,-4,-5,-6,-7,-8,-9,-10")
-});
+// document.querySelector('p').addEventListener('click', function() {
+//   window.location.assign(window.location.href + "&thingeeCJH=-1,-2,-3,-4,-5,-6,-7")
+// });
 
 let consulta = new URLSearchParams(window.location.search);
 
@@ -16,8 +16,8 @@ const metadades = {
   aprox: gatherMetadades('aproximada', 'approximate'),
 };
 
-// For the first key in the query that has a non-empty value, return the value.
-// Delete ALL keys from the query.
+// For the first key passed in that has a non-empty value, return the value.
+// Delete the keys from the query.
 function gatherMetadades(...keys) {
   let value = null;
   keys.forEach(function(key) {
@@ -43,7 +43,6 @@ function gatherGraphDades() {
           if(isNaN(entry)) { entry = null };
           return entry;
         });
-      // console.log(dades);
       graphDades.push({
         name: key,
         data: dades
@@ -54,30 +53,19 @@ function gatherGraphDades() {
 };
 
 const ésAng = (() => metadades.llengua.toLowerCase() == 'english' || langButton.classList.contains('cat'));
-const aproximant = (() => Boolean(metadades.aprox));
+const ajustAproximat = (() => Boolean(metadades.aprox));
 
-function graphEntries() {
+function númerosPerGraph() {
   let resultats = gatherGraphDades();
-  console.error(metadades);
-  if(aproximant()) {
+  if(ajustAproximat()) {
     resultats = resultats.flatMap((entry) => [entry].concat(projeccions(entry)));
-      // { name: entry.name + 'projecc',
-      //   data: projeccions(entry.data)
-      // }
   }
 
-  // hack to shove in theil-sen attempt
-  // let theil_sen_thing = {
-  //   name: resultats[0].name + 'theil',
-  //   data: projeccions(resultats[0].data)
-  // }
-  // resultats.push(theil_sen_thing);
-  // console.warn(theil_sen_thing);
-  console.log(resultats);
   return resultats
 };
 
 const startPoint = (() => parseFloat(metadades['inici']) || 0);
+
 const chartStructure = {
   title: { text: metadades.títol },
   subtitle: { text: metadades.subtítol },
@@ -99,7 +87,7 @@ const chartStructure = {
       connectNulls: true
     }
   },
-  series: graphEntries()
+  series: númerosPerGraph()
 }
 
 var chart = Highcharts.chart('container', chartStructure);

@@ -9,6 +9,11 @@ function llsError(lineDef, points) {
   }).reduce(sum, 0);
 };
 
+// bruteForceLLS() is not very clever. The wider the range of values, the harder it works to
+// hone in on the solution.
+// Passing in smaller epsilons results in more accurate solutions but takes more time. Tests
+// will be in danger of failing due to taking too long (e.g. more than 10 seconds).
+// Writing a better brute-force solver is certainly possible.
 function bruteForceLLS(values, epsilon) {
   const ersatzPoints = values.map((value, index) => [index, value]).filter(arr => arr[1] !== null);
   let ys = ersatzPoints.map((point) => point[1]);
@@ -20,11 +25,8 @@ function bruteForceLLS(values, epsilon) {
   let slopes = ersatzPoints.slice(1).map((point, index) => (point[1] - ersatzPoints[index][1]) / (point[0] - ersatzPoints[index][0]));
   let slopeRange = { minimum: min(slopes), maximum: max(slopes) };
   let interceptRange = { minimum: minY + slopeRange.minimum * maxX, maximum: maxY + slopeRange.maximum * maxX };
-console.log( { slopeRange: slopeRange, interceptRange: interceptRange } );
 
   let solution = { error: Infinity, slope: null, intercept: null };
-  // const slopeEpsilon = (slopeRange.maximum - slopeRange.minimum) / 1000;
-  // const interceptEpsilon = (interceptRange.maximum - interceptRange.minimum) / 1000;
   for(let slope = slopeRange.minimum; slope < slopeRange.maximum; slope += epsilon) {
     for(let intercept = interceptRange.minimum; intercept < interceptRange.maximum; intercept += epsilon) {
       const lineDef = { yInt: intercept, slope: slope };
