@@ -26,9 +26,9 @@ test("ava: notDeepEqual: 0, -0", t => {
 test('ontario 1A example: brute force helper finds approximate slope', t => {
   const yValues = [null, 2.6228, 2.9125, 3.1390, 4.2952, 4.9918, 4.6468, 5.4008, 6.3853, 6.7494, 7.3864];
   const expectedSlope = 0.5390;
-  const bruteSlope = bruteForceLLS(yValues, 0.005).slope;
+  const bruteSlope = bruteForceLLS(yValues, 0.008).slope;
 
-  if(approximatelyEqual(expectedSlope, bruteSlope, 0.005)) {
+  if(approximatelyEqual(expectedSlope, bruteSlope, 0.025)) {
     t.pass();
   } else {
     t.deepEqual(expectedSlope, bruteSlope);
@@ -37,9 +37,9 @@ test('ontario 1A example: brute force helper finds approximate slope', t => {
 test('ontario 1A example: brute force helper finds approximate y-intercept', t => {
   const yValues = [null, 2.6228, 2.9125, 3.1390, 4.2952, 4.9918, 4.6468, 5.4008, 6.3853, 6.7494, 7.3864];
   const expectedYInt = 1.8886;
-  const bruteYInt = bruteForceLLS(yValues, 0.005).yInt;
+  const bruteYInt = bruteForceLLS(yValues, 0.008).yInt;
 
-  if(approximatelyEqual(expectedYInt, bruteYInt, 0.01)) {
+  if(approximatelyEqual(expectedYInt, bruteYInt, 0.025)) {
     t.pass();
   } else {
     t.deepEqual(expectedYInt, bruteYInt);
@@ -51,8 +51,8 @@ test('ontario 1A example: brute force helper finds approximate y-intercept', t =
 test('ontario 1B example: brute force helper finds approximate slope', t => {
   const yValues = [null, 2.6228, 2.9125, 3.1390, 4.2952, 4.9918, 4.6468, 5.4008, 63.853, 6.7494, 7.3864];
   const expectedSlope = 2.2805;
-  const actualSlope = bruteForceLLS(yValues, 0.1).slope;
-  if(approximatelyEqual(expectedSlope, actualSlope, 0.1)) {
+  const actualSlope = bruteForceLLS(yValues, 0.2).slope;
+  if(approximatelyEqual(expectedSlope, actualSlope, 0.2)) {
     t.pass();
   } else {
     t.deepEqual(expectedSlope, actualSlope);
@@ -61,8 +61,8 @@ test('ontario 1B example: brute force helper finds approximate slope', t => {
 test('ontario 1B example: brute force helper finds approximate y-intercept', t => {
   const yValues = [null, 2.6228, 2.9125, 3.1390, 4.2952, 4.9918, 4.6468, 5.4008, 63.853, 6.7494, 7.3864];
   const expectedYInt = -1.9427;
-  const actualYInt = bruteForceLLS(yValues, 0.1).yInt;
-  if(approximatelyEqual(expectedYInt, actualYInt, 0.1)) {
+  const actualYInt = bruteForceLLS(yValues, 0.12).yInt;
+  if(approximatelyEqual(expectedYInt, actualYInt, 0.25)) {
     t.pass();
   } else {
     t.deepEqual(expectedYInt, actualYInt);
@@ -72,8 +72,8 @@ test('ontario 1B example: brute force helper finds approximate y-intercept', t =
 test('ontario 1C example: brute force helper finds approximate slope', t => {
   const yValues = [null, 2.6228, 2.9125, 3.1390, 4.2952, 4.9918, 4.6468, 5.4008, null, 6.7494, 7.3864];
   const expectedSlope = 0.53220;
-  const actualSlope = bruteForceLLS(yValues, 0.005).slope;
-  if(approximatelyEqual(expectedSlope, actualSlope, 0.005)) {
+  const actualSlope = bruteForceLLS(yValues, 0.008).slope;
+  if(approximatelyEqual(expectedSlope, actualSlope, 0.0161)) {
     t.pass();
   } else {
     t.deepEqual(expectedSlope, actualSlope);
@@ -82,8 +82,8 @@ test('ontario 1C example: brute force helper finds approximate slope', t => {
 test('ontario 1C example: brute force helper finds approximate y-intercept', t => {
   const yValues = [null, 2.6228, 2.9125, 3.1390, 4.2952, 4.9918, 4.6468, 5.4008, null, 6.7494, 7.3864];
   const expectedYInt = 1.9035;
-  const actualYInt = bruteForceLLS(yValues, 0.005).yInt;
-  if(approximatelyEqual(expectedYInt, actualYInt, 0.01)) {
+  const actualYInt = bruteForceLLS(yValues, 0.008).yInt;
+  if(approximatelyEqual(expectedYInt, actualYInt, 0.0161)) {
     t.pass();
   } else {
     t.deepEqual(expectedYInt, actualYInt);
