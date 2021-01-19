@@ -15,9 +15,29 @@
       <img id="bandera" src="flag-of-the-united-states.svg" />
     </button>
 
-    <h1 id="títol">h1 H! gcfhkjg gyuuty rtyrtg</h1>
-    <p id="intro">Proveu <a href="open-grapher.html?títol=Escriptor&subtítol=starting%201%2F1&thing0=4,3,5,4&thing%201=3,4.2,5,4.3&thing%202=4,4.8,6,3,5&start=100.5&x=date&y=weight&aproximada=">open-grapher.html?títol=Escriptor&subtítol=starting%201%2F1&thing0=4,3,5,4&thing%201=3,4.2,5,4.3&thing%202=4,4.8,6,3,5&start=100.5&x=date&y=weight&aproximada=</a>
+    <h1 id="títol">Obert Escriptor (Open Grapher)</h1>
+    <p id="intro">
+      This is a client-side, in-browser grapher of data sequence(s) submitted in the query string. These query strings are available:
+      <ul>
+        <li>'títol', or 'title'</li>
+        <li>'subtítol', or 'subtitle'</li>
+        <li>'x'</li>
+        <li>'y'</li>
+        <li>'inici', or 'start'</li>
+        <li>'llengua', or 'language'</li>
+        <li>'aproximada', or 'approximate'</li>
+      </ul>
+      If 'aproximada' or 'approximate' is set to anything in the query string, then each series of data will be graphed accompanied by best-fit lines calculated via <a href="https://en.wikipedia.org/wiki/Theil%E2%80%93Sen_estimator">Theil-Sen</a> and <a href="https://en.wikipedia.org/wiki/Linear_least_squares">Linear Least Squares</a>.
     </p>
+    <p>
+      This will support at least Catalan and English.
+    </p>
+    <p>Here's an example: Proveu ("try") <a href="open-grapher.html?títol=Simple%20graph&subtítol=My%20New%20Graph&some%20data=2,4,3,2&different%20data=4,4.8,6,3,5&inici=1&x=day&y=weight">open-grapher.html?títol=Simple%20graph&subtítol=My%20New%20Graph&some%20data=2,4,3,2&different%20data=4,4.8,6,3,5&inici=1&x=day&y=weight</a>.<br />
+      Or add the "aproximada" term to draw the best-fit lines along with the data. <a href="open-grapher.html?títol=Graph%20with%20best%20fit%20lines&subtítol=My%20Fancier%20Graph&some%20data=2,4,3,2&different%20data=4,4.8,6,3,5&inici=1&x=day&y=weight&aproximada=hello">open-grapher.html?títol=Graph%20with%20best%20fit%20lines&subtítol=My%20Fancier%20Graph&some%20data=2,4,3,2&different%20data=4,4.8,6,3,5&inici=1&x=day&y=weight&aproximada=hello</a>.
+    </p>
+
+    <p> Edit the URL in the browser's location bar to define your own graph!</p>
+
     <div id="contenidor" style="height: 800px"></div>
 
     <script type="module" src="open-grapher.js"></script>
