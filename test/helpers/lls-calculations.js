@@ -1,20 +1,20 @@
-export { bruteForceLLS };
+export { bruteForce };
 
 import { max, min, sum } from '../../modules/utils/max-min-sum.js';
 
-function llsError(lineDef, points) {
+function bruteForceError(lineDef, points) {
   return points.map(function(point) {
     const distance = point[1] - (point[0] * lineDef.slope + lineDef.yInt);
     return distance * distance;
   }).reduce(sum, 0);
 };
 
-// bruteForceLLS() is not very clever. The wider the range of values, the harder it works to
+// bruteForce() is not very clever. The wider the range of values, the harder it works to
 // hone in on the solution.
 // Passing in smaller epsilons results in more accurate solutions but takes more time. Tests
 // will be in danger of failing due to taking too long (e.g. more than 10 seconds).
 // Writing a better brute-force solver is certainly possible.
-function bruteForceLLS(values, epsilon) {
+function bruteForce(values, epsilon) {
   const ersatzPoints = values.map((value, index) => [index, value]).filter(arr => arr[1] !== null);
   let ys = ersatzPoints.map((point) => point[1]);
   let maxY = max(ys);
@@ -30,7 +30,7 @@ function bruteForceLLS(values, epsilon) {
   for(let slope = slopeRange.minimum; slope < slopeRange.maximum; slope += epsilon) {
     for(let intercept = interceptRange.minimum; intercept < interceptRange.maximum; intercept += epsilon) {
       const lineDef = { yInt: intercept, slope: slope };
-      const myError = llsError(lineDef, ersatzPoints);
+      const myError = bruteForceError(lineDef, ersatzPoints);
       if(myError < solution.error) {
         solution.error = myError;
         solution.slope = slope;

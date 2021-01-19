@@ -1,7 +1,7 @@
 import test from 'ava';
 
 import { approximatelyEqual } from './helpers/equality.js';
-import { bruteForceLLS } from './helpers/lls-calculations.js';
+import { bruteForce } from './helpers/lls-calculations.js';
 import { llsDefinition, llsValues } from '../modules/linear-least-squares.js';
 
 const EPSILON = 0.001;
@@ -35,7 +35,7 @@ test('wikipedia example: line: handles null value', t => {
   const expected = [ 5, 6, 7, 8, 9 ];
   // brute force "approximately equal" has to be looser than (larger than) the floating-point
   // approximation epsilon, for the test to not take too much time
-  // console.log(bruteForceLLS(yValues, 0.002));
+  // console.log(bruteForce(yValues, 0.002));
   t.deepEqual(actual, expected);
 });
 

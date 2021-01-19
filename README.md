@@ -65,7 +65,7 @@ function err(lineDef, points) {
    }).reduce(((accum, currentVal) => accum + currentVal), 0);
 };
 
-function bruteForceLLS(lineDef, points) {
+function bruteForce(lineDef, points) {
   let ys = points.map((point) => point[1]);
   let max = ys.reduce((accum, element) => element > accum ? element : accum);
   let min = ys.reduce((accum, element) => element < accum ? element : accum);

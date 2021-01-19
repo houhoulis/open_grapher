@@ -1,4 +1,5 @@
 import { projeccions } from './modules/projeccions.js';
+import { empleneu, setAng } from './empleneu.js';
 
 // document.querySelector('p').addEventListener('click', function() {
 //   window.location.assign(window.location.href + "&thingeeCJH=-1,-2,-3,-4,-5,-6,-7")
@@ -6,19 +7,9 @@ import { projeccions } from './modules/projeccions.js';
 
 let consulta = new URLSearchParams(window.location.search);
 
-const metadades = {
-  títol: gatherMetadades('títol', 'title'),
-  subtítol: gatherMetadades('subtítol', 'subtitle'),
-  x: gatherMetadades('x'),
-  y: gatherMetadades('y'),
-  inici: gatherMetadades('inici', 'start'),
-  llengua: gatherMetadades('llengua', 'language'),
-  aprox: gatherMetadades('aproximada', 'approximate'),
-};
-
 // For the first key passed in that has a non-empty value, return the value.
 // Delete the keys from the query.
-function gatherMetadades(...keys) {
+function consultaSearchParams(...keys) {
   let value = null;
   keys.forEach(function(key) {
     if(!value) {
@@ -31,6 +22,24 @@ function gatherMetadades(...keys) {
   });
   return value;
 };
+
+const metadades = {
+  títol: consultaSearchParams('títol', 'title'),
+  subtítol: consultaSearchParams('subtítol', 'subtitle'),
+  x: consultaSearchParams('x'),
+  y: consultaSearchParams('y'),
+  inici: consultaSearchParams('inici', 'start'),
+  llengua: consultaSearchParams('llengua', 'language'),
+  aprox: consultaSearchParams('aproximada', 'approximate'),
+};
+
+if(metadades.llengua.toString().toLowerCase() == 'eng' || document.querySelector('#idiomes').selectedIndex == 1) {
+  setAng('english');
+} else {
+  setAng('català');
+};
+
+empleneu();
 
 function gatherGraphDades() {
   let graphDades = [];
@@ -52,7 +61,6 @@ function gatherGraphDades() {
   return graphDades;
 };
 
-const ésAng = (() => metadades.llengua.toLowerCase() == 'english' || langButton.classList.contains('cat'));
 const ajustAproximat = (() => Boolean(metadades.aprox));
 
 function númerosPerGraph() {
@@ -90,4 +98,4 @@ const chartStructure = {
   series: númerosPerGraph()
 }
 
-var chart = Highcharts.chart('container', chartStructure);
+var chart = Highcharts.chart('contenidor', chartStructure);
