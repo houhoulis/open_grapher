@@ -33,7 +33,7 @@ const metadades = {
   aprox: consultaSearchParams('aproximada', 'approximate'),
 };
 
-if(metadades.llengua.toString().toLowerCase() == 'eng' || document.querySelector('#idiomes').selectedIndex == 1) {
+if((metadades.llengua && metadades.llengua.toLowerCase() == 'eng') || document.querySelector('.english')) {
   setAng('english');
 } else {
   setAng('català');

@@ -1,3 +1,27 @@
+export { contentsFor };
+
+const contents = {
+  català: {
+    llenguaText: 'Switch to English',
+    bandera: 'flag-of-the-united-states.svg',
+    títol: 'Obert Escriptor',
+    intro: 'h´llø th´r´',
+  },
+  english: {
+    llenguaText: 'Canviar a català',
+    bandera: 'bandera-de-catalunya.svg',
+    títol: 'Open Grapher',
+    intro: 'hello there',
+  },
+};
+
+function contentsFor(llenguatge) {
+  return contents[llenguatge];
+};
+
+
+// };
+
 const text = {
   cat: {
     queryStrings: {

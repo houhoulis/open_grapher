@@ -1,0 +1,10 @@
+img#bandera {
+  height: 1em;
+  vertical-align: text-top;
+  margin: 0.1em 0.5em;
+}
+
+button {
+  padding: 2px;
+  margin-left: 50%;
+}
