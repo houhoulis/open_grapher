@@ -19,7 +19,7 @@ function contentsFor(llenguatge) {
   return contents[llenguatge];
 };
 
-
+/*
 // };
 
 const text = {
@@ -73,12 +73,12 @@ const location = {
     title: document.querySelector('title').textContent,
     switchLang = document.querySelector('#language'),
     ā/* a */
-  }};
+//  }};
 
 const isCat = (() => langButton.classList.contains('cat'));
-const isEng = (() => langButton.classList.contains('eng') || 
-if(clicked && isCat) {
-  classList.remove('cat');
-  classList.add('en')
-
+const isEng = (() => !isCat()); //langButton.classList.contains('eng') || 
+// if(clicked && isCat) {
+//   classList.remove('cat');
+//   classList.add('en')
+// };
   

@@ -1,5 +1,5 @@
 import { projeccions } from './modules/projeccions.js';
-// import { empleneu, setAng } from './empleneu.js';
+import { empleneu, setAng } from './modules/empleneu.js';
 
 // document.querySelector('p').addEventListener('click', function() {
 //   window.location.assign(window.location.href + "&thingeeCJH=-1,-2,-3,-4,-5,-6,-7")
@@ -33,13 +33,13 @@ const metadades = {
   aprox: consultaSearchParams('aproximada', 'approximate'),
 };
 
-// if((metadades.llengua && metadades.llengua.toLowerCase() == 'eng') || document.querySelector('.english')) {
-//   setAng('english');
-// } else {
-//   setAng('català');
-// };
+if((metadades.llengua && metadades.llengua.toLowerCase() == 'eng') || document.querySelector('.english')) {
+  setAng('english');
+} else {
+  setAng('català');
+};
 
-// empleneu();
+empleneu();
 
 function gatherGraphDades() {
   let graphDades = [];
