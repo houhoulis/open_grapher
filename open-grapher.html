@@ -16,32 +16,21 @@
     </button>
 
     <h1 id="títol">Obert Escriptor (Open Grapher)</h1>
-    <p id="intro1">
-      This is an entirely client-side, in-browser grapher of sequence(s) you add to the URL. No data is sent to any server, this is done entirely on your computer. For example, "open-grapher.html?mysequence=1,2,3" will draw a graph with the points 1, 2, and 3 in order, labeled "mysequence". Try it: <a href="open-grapher.html?mysequence=1,2,3">open-grapher.html?mysequence=1,2,3</a>.
-    </p>
-    <p id="intro2">
-      Any query string you add to the URL in the form <i>"word=number,number,number,,,number,number"</i> will be interpreted as a sequence to be graphed. If two commas are next to each other, that point in the sequence will be skipped. You can add any number of these query strings to the URL -- all series will be graphed. In addition, these special query strings are available:
-    </p>
+    <p id="intro1"></p>
+    <p id="intro2"></p>
     <ul>
-      <li>'títol', or 'title'</li>
-      <li>'subtítol', or 'subtitle'</li>
+      <li>'títol' / 'title'</li>
+      <li>'subtítol' / 'subtitle'</li>
       <li>'x'</li>
       <li>'y'</li>
-      <li>'inici', or 'start'</li>
-      <li>'llengua', or 'language'</li>
-      <li>'aproximada', or 'approximate'</li>
+      <li>'inici' / 'start'</li>
+      <li>'llengua' / 'language'</li>
+      <li>'aproximada' / 'approximate'</li>
     </ul>
-    <p id="intro3">
-      If 'aproximada' (or 'approximate') is set to anything in the query string, then each series of data will be graphed accompanied by best-fit lines calculated via <a href="https://en.wikipedia.org/wiki/Theil%E2%80%93Sen_estimator">Theil-Sen</a> and <a href="https://en.wikipedia.org/wiki/Linear_least_squares">Linear Least Squares</a>. I made this page to explore best-fit lines.
-    </p>
-    <p>
-      This page will support at least Catalan and English.
-    </p>
-    <p>Here's an example: Click <a href="open-grapher.html?títol=My New Graph&subtítol=A simple graph&some data=4,5,5.7,3,5&some different data=1.3,3.3,2.3,1.3&inici=1&x=day&y=weight">open-grapher.html?títol=My New Graph&subtítol=A simple graph&some data=4,5,5.7,3,5&some different data=1.3,3.3,2.3,1.3&inici=1&x=day&y=weight</a> for a graph with two series.<br />
-      Or add the "aproximada" term to add the best-fit lines for each series to the graph. <a href="open-grapher.html?títol=My Fancier Graph&subtítol=A graph with best fit lines&some data=4,5,5.7,3,5&some different data=1.3,3.3,2.3,1.3&inici=1&x=day&y=weight&aproximada=123">open-grapher.html?títol=My Fancier Graph&subtítol=A graph with best fit lines&some data=4,5,5.7,3,5&some different data=1.3,3.3,2.3,1.3&inici=1&x=day&y=weight&aproximada=123</a>.
-    </p>
-
-    <p> Edit the URL in the browser's location bar to define your own graph!</p>
+    <p id="intro3"></p>
+    <p id="intro4"></p>
+    <p id="intro5"></p>
+    <p id="intro6"></p>
 
     <div id="contenidor" style="height: 800px"></div>
 
